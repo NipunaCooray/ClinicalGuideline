@@ -314,6 +314,32 @@
     /* Overlap slightly with tabs */
 }
 
+
+.group-section {
+    margin: 2rem;
+    /* Same margin as the boxed-section */
+}
+
+.group-section-header-card {
+    border-color: #6f42c1;
+    /* Purple border */
+    border-radius: 8px;
+    border-width: 2px;
+}
+
+.group-content-box {
+    border: 1px solid #e0e0e0;
+    /* Light gray border */
+    background-color: #f9f9f9;
+    /* Light gray background */
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-top: -1px;
+    /* Overlap slightly with tabs */
+}
+
+
+
 .text-custom-purple {
     color: #6f42c1;
     /* Purple */
