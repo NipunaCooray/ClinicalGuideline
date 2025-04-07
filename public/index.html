@@ -8,11 +8,6 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-    <script>
-        mermaid.initialize({ startOnLoad: 'loose' });
-
-
-    </script>
 </head>
 
 <body>
@@ -94,7 +89,7 @@
             <div class="prepare-icon">
                 <img src="prepare-icon.png" alt="Prepare Icon" />
             </div>
-            <h2>1. Initial assessment</h2>
+            <h2>Initial assessment</h2>
         </div>
     </div>
 
@@ -167,65 +162,50 @@
             </br>
             </br>
 
-            <!-- Flowchart 1 -->
+            <!--Flowchart 1 - initial assessment IA-->
 
-            <div class="mermaid">
+            <pre class="mermaid">
                 flowchart LR
-
-                A["Abdominal injury with suspected Spleen injury Age 0-16"] --> sub_one
-
-                subgraph sub_one["Local trauma response"]
-                direction TB
-                mobi_trauma["Mobilise local trauma"] --> primary_survey["Primary survery"]
+        
+                IA_A["Abdominal injury with suspected Spleen injury Age 0-16"] --> IA_sub_one
+        
+                subgraph IA_sub_one["Local trauma response"]
+                    direction TB
+                    IA_s_1_1["Mobilise local trauma"] --> IA_s_1_2["Primary survery"]
                 end
-
-                sub_one --> C["Address immediately life-threatening issues as found
+        
+                IA_sub_one --> IA_C["Address immediately life-threatening issues as found
                 Consider implications of associated life-threatening injuries.
                 "]
-
-                subgraph sub_two["Secondary survey"]
-                direction TB
-                airway["Secondary survery"] --> breathing["Consider implications of associated injuries Analgesia "]
+        
+                subgraph IA_sub_two["Secondary survey"]
+                    direction TB
+                    IA_s_2_1["Secondary survery"] --> IA_s_2_2["Consider implications of associated injuries Analgesia "]
                 end
-
-                sub_one --> sub_two
-
-                C --> sub_two
-
-                C --> D["Consider transfer"]
-
-                C --> E["Consultation"]
-
-                D --> E
-
-                sub_two --> D
-
-                sub_two --> E
-
-                sub_two --> F["Suspected ongoing bleeding"]
-
-                sub_two --> G["Sustained response to resusitation"]
-
-                sub_two --> H["No signs of ongoing bleeding"]
-
-                E --> I["Patch"]
-
-                E --> J["NETS"]
-
-                E --> K["Telemedicine"]
-
-                E --> L["NSW Medical retrieval unit (MRU)"]
-
-                I --> J
-
-                J --> I
-
+        
+                IA_sub_one --> IA_sub_two
+                IA_C --> IA_sub_two
+                IA_C --> IA_D["Consider transfer"]
+                IA_C --> IA_E["Consultation"]
+                IA_D --> IA_E
+                IA_sub_two --> IA_D
+                IA_sub_two --> IA_E
+                IA_sub_two --> IA_F["Suspected ongoing bleeding"]
+                IA_sub_two --> IA_G["Sustained response to resusitation"]
+                IA_sub_two --> IA_H["No signs of ongoing bleeding"]
+                IA_E --> IA_I["Patch"]
+                IA_E --> IA_J["NETS"]
+                IA_E --> IA_K["Telemedicine"]
+                IA_E --> IA_L["NSW Medical retrieval unit (MRU)"]
+                IA_I --> IA_J
+                IA_J --> IA_I
+        
                 linkStyle 0,2,4,5,10,13,18,19 stroke:#0000FF,stroke-width:2px;
                 linkStyle 6,7,8,9,11,12,14,15,16,17 stroke:#FF0000,stroke-width:2px;
-
-
-
-            </div>
+        
+                click IA_A callback "Initial assessment A"
+        
+            </pre>
 
     </div>
 
@@ -412,47 +392,34 @@
             </br>
             </br>
 
+            <!--Flowchart 2 - No signs of hemodynamic compromise G1-->
 
-            <div class="mermaid">
+            <pre class="mermaid">
 
                 flowchart LR
-
-                A["Start here"] --> B["No suspected ongoing bleeding"]
-
-                B --> C["Consider CT scan [Link CT scan]"]
-
-                C --> D["Injury found that required operation or other intervention"]
-
-                D --> E["Discussion re place of care based on grade, local resources and personnel [Link 14-place of
-                care]"]
-
-                D --> F["Intervention locally"]
-
-                C --> G["No injuries requiring intervention"]
-
-                G --> H["Admit to ward [Link 12 ward management]"]
-
-                H --> I["Sign of haemodynamic compromise or Hb70 "]
-
-                G --> J["Discharge[Link 13a Discharge criteria, Link 13c Post discharge sheet]"]
-
-                C --> I
-
-                I --> K["Suspected ongoing bleeding pathway"]
-
-                E --> L["Link patch"]
-
-                E --> M["Link NETS"]
-
-                E --> N["Link Telemedicine"]
-
-                E --> O["Link NSW Medical retrieval unit (MRU)"]
-
+        
+                G1_A["Start here"] --> G1_B["No suspected ongoing bleeding"]
+                G1_B --> G1_C["Consider CT scan [Link CT scan]"]
+                G1_C --> G1_D["Injury found that required operation or other intervention"]
+                G1_D --> G1_E["Discussion re place of care based on grade, local resources and personnel [Link 14-place of care]"]
+                G1_D --> G1_F["Intervention locally"]
+                G1_C --> G1_G["No injuries requiring intervention"]
+                G1_G --> G1_H["Admit to ward [Link 12 ward management]"]
+                G1_H --> G1_I["Sign of haemodynamic compromise or Hb70 "]
+                G1_G --> G1_J["Discharge[Link 13a Discharge criteria, Link 13c Post discharge sheet]"]
+                G1_C --> G1_I
+                G1_I --> G1_K["Suspected ongoing bleeding pathway"]
+                G1_E --> G1_L["Link patch"]
+                G1_E --> G1_M["Link NETS"]
+                G1_E --> G1_N["Link Telemedicine"]
+                G1_E --> G1_O["Link NSW Medical retrieval unit (MRU)"]
+        
                 linkStyle 0,1,5,6,8 stroke:#0000FF,stroke-width:2px;
                 linkStyle 2,3,4,7,9,10,11,12,13,14 stroke:#FF0000,stroke-width:2px;
-
-
-            </div>
+        
+                click G1_A callback
+        
+            </pre>
 
 
 
@@ -516,65 +483,54 @@
             </br>
             </br>
 
-            <div class="mermaid">
+            <!--Flowchart 3 - Initially haemodynamically compromised G2-->
 
-                flowchart LR
+            <pre class="mermaid">
 
-                A["Start here"] --> B["SUSTAINED HEMODYNAMIC RESPONSE [Links 1a and 1b]"]
-                B --> C["CT scan [Link CT scan]"]
-
-                subgraph sub_one["ICU/PICU"]
+            flowchart LR
+    
+            G2_A["Start here"] --> G2_B["SUSTAINED HEMODYNAMIC RESPONSE [Links 1a and 1b]"]
+            G2_B --> G2_C["CT scan [Link CT scan]"]
+    
+            subgraph G2_sub_one["ICU/PICU"]
                 direction TB
-                s_1_1["Monitoring, hourly BTF obs, consider invasive BP monitoring"] --> s_1_2["Consider other sources
-                of blood
+                G2_s_1_1["Monitoring, hourly BTF obs, consider invasive BP monitoring"] --> G2_s_1_2["Consider other sources of blood
                 loss"]
-                s_1_2 --> s_1_3["Continue to follow paediatric resuscitation principles [Links 1a and 1b]"]
-                s_1_3 --> s_1_4["Hb Q6h until stable"]
-                s_1_4 --> s_1_5["Bed rest and NBM, analgesia"]
-                s_1_5 --> s_1_6["Consider mechanical VTE prophylaxis if post pubertal"]
-                end
-
-                C --> sub_one
-
-                C --> D["Injury found that required operation or other intervention"]
-
-                D --> E["Intervention locally"]
-
-                E --> sub_one
-
-                subgraph sub_two["Discussion of management"]
-                direction TB
-                s_2_1["Discussion of management and place of care based on local resources and personnel [Link 14]"] -->
-                s_2_2["Interfacility transfer"]
-
-                end
-
-                E --> sub_two
-
-                sub_one --> F["Suspected ongoing bleeding [Link 4]"]
-
-                F --> sub_two
-
-                sub_two --> G["NETS [Link 4]"]
-
-                sub_two --> H["NSW MRU [link 5]"]
-
-                G --> I["Telemedicine"]
-
-                sub_one --> J["Hv stable x2 and >7*, vital signs normal"]
-
-                J --> K["Admit to ward [Link 12]"]
-
-                K --> L["****Recurrent haemodynamic compromise or Hb more than 70"]
-
-                K --> M["Discharge [Link 13a, 13c]"]
-
-                L --> sub_one
-
-                linkStyle 1 stroke:#0000FF,stroke-width:2px;
-                linkStyle 0,2 stroke:#FF0000,stroke-width:2px;
-
-            </div>
+                G2_s_1_2 --> G2_s_1_3["Continue to follow paediatric resuscitation principles [Links 1a and 1b]"]
+                G2_s_1_3 --> G2_s_1_4["Hb Q6h until stable"]
+                G2_s_1_4 --> G2_s_1_5["Bed rest and NBM, analgesia"]
+                G2_s_1_5 --> G2_s_1_6["Consider mechanical VTE prophylaxis if post pubertal"]
+            end
+    
+            G2_C --> G2_sub_one
+            G2_C --> G2_D["Injury found that required operation or other intervention"]
+            G2_D --> G2_E["Intervention locally"]
+            G2_E --> G2_sub_one
+    
+            subgraph G2_sub_two["Discussion of management"]
+            direction TB
+                G2_s_2_1["Discussion of management and place of care based on local resources and personnel [Link 14]"] -->
+                G2_s_2_2["Interfacility transfer"]
+            end
+    
+            G2_E --> G2_sub_two
+            G2_sub_one --> G2_F["Suspected ongoing bleeding [Link 4]"]
+            G2_F --> G2_sub_two
+            G2_sub_two --> G2_G["NETS [Link 4]"]
+            G2_sub_two --> G2_H["NSW MRU [link 5]"]
+            G2_G --> G2_I["Telemedicine"]
+            G2_sub_one --> G2_J["Hv stable x2 and >7*, vital signs normal"]
+            G2_J --> G2_K["Admit to ward [Link 12]"]
+            G2_K --> G2_L["****Recurrent haemodynamic compromise or Hb more than 70"]
+            G2_K --> G2_M["Discharge [Link 13a, 13c]"]
+            G2_L --> G2_sub_one
+    
+            linkStyle 1 stroke:#0000FF,stroke-width:2px;
+            linkStyle 0,2 stroke:#FF0000,stroke-width:2px;
+    
+            click G2_A callback 
+    
+        </pre>
 
 
         </div>
@@ -610,71 +566,58 @@
             </br>
 
 
-            <div class="mermaid">
+            <!--Flowchart 4 - Suspected ongoing bleeding G3-->
+
+            <pre class="mermaid">
 
                 flowchart LR
-
-                subgraph sub_one["Resuscitation"]
-                direction TB
-                s_1_1["Resusitation link 1a"] --> s_1_2["Resusitation link 1b"]
-                s_1_2 --> s_1_3["Analgesia"]
+        
+                subgraph G3_sub_one["Resuscitation"]
+                    direction TB
+                    G3_s_1_1["Resusitation link 1a"] --> G3_s_1_2["Resusitation link 1b"]
+                    G3_s_1_2 --> G3_s_1_3["Analgesia"]
                 end
-
-                A["Start here"] --> sub_one
-
-                sub_one --> B[CT Scan if safe to do so]
-
-                subgraph sub_two["ICU/PICU"]
-                direction TB
-                s_2_1["ICU/PICU"] --> s_2_2["Monitoring, hourly BTF obs"]
-                s_2_2 --> s_2_3["Invasive BP monitoring"]
-                s_2_3 --> s_2_4["Consider other sources of blood loss"]
-                s_2_4 --> s_2_5["Continue to follow paediatric resuscitation principles"]
-                s_2_5 --> s_2_6["Link 1a"]
-                s_2_6 --> s_2_7["Link 1b"]
-                s_2_7--> s_2_8["Hb Q6h until stable"]
-                s_2_8 --> s_2_9["Bed rest and NBM, analgesia"]
-                s_2_9 --> s_2_10["Consider mechanical VTE prophylaxis if post pubertal"]
+        
+                G3_A["Start here"] --> G3_sub_one
+                G3_sub_one --> G3_B[CT Scan if safe to do so]
+                subgraph G3_sub_two["ICU/PICU"]
+                    direction TB
+                    G3_s_2_1["ICU/PICU"] --> G3_s_2_2["Monitoring, hourly BTF obs"]
+                    G3_s_2_2 --> G3_s_2_3["Invasive BP monitoring"]
+                    G3_s_2_3 --> G3_s_2_4["Consider other sources of blood loss"]
+                    G3_s_2_4 --> G3_s_2_5["Continue to follow paediatric resuscitation principles"]
+                    G3_s_2_5 --> G3_s_2_6["Link 1a"]
+                    G3_s_2_6 --> G3_s_2_7["Link 1b"]
+                    G3_s_2_7--> G3_s_2_8["Hb Q6h until stable"]
+                    G3_s_2_8 --> G3_s_2_9["Bed rest and NBM, analgesia"]
+                    G3_s_2_9 --> G3_s_2_10["Consider mechanical VTE prophylaxis if post pubertal"]
                 end
-
-                B --> sub_two
-
-                sub_two --> C["Hb stable x2 <br> Sital signs normal"]
-
-                C --> D["Sustained response to resuscitation link 3"]
-
-                sub_two --> E["Persistent or recurrent haemodynamic compromise OR <br> Lack of sustained Hb response to
-                PRBCs
+        
+                G3_B --> G3_sub_two
+                G3_sub_two --> G3_C["Hb stable x2 <br> Sital signs normal"]
+                G3_C --> G3_D["Sustained response to resuscitation link 3"]
+                G3_sub_two --> G3_E["Persistent or recurrent haemodynamic compromise OR <br> Lack of sustained Hb response to PRBCs
                 over 12-48 hours <br> (up to 40mls/kg PRBCs) +/- MTP"]
-
-                E --> F["Failure of NOM Algorithm"]
-
-                subgraph sub_three["Discussion re management"]
-                direction TB
-                s_3_1["Discussion re management and place of care based on local resources and personnel"] -->
-                s_3_2["Link 14
-                place of care"]
-                s_3_2 --> s_3_3["Link 15 interfacility transfer"]
+                G3_E --> G3_F["Failure of NOM Algorithm"]
+                subgraph G3_sub_three["Discussion re management"]
+                    direction TB
+                    G3_s_3_1["Discussion re management and place of care based on local resources and personnel"] --> G3_s_3_2["Link 14
+                    place of care"]
+                    G3_s_3_2 --> G3_s_3_3["Link 15 interfacility transfer"]
                 end
-
-                F --> sub_three
-
-                sub_one --> sub_three
-
-                sub_three --> G["NETS [Link 4]"]
-
-                G --> H["Link Telemedicine"]
-
-                sub_three --> I["Other transport service link MRU]"]
-
-
-                F --> J["Judicious NOM"]
-
-                F --> K["Consider operation Link 16 Surgical principles"]
-
-                F --> L["Consider angeography [angioembolisation Link 17]"]
-
-            </div>
+        
+                G3_F --> G3_sub_three
+                G3_sub_one --> G3_sub_three
+                G3_sub_three --> G3_G["NETS [Link 4]"]
+                G3_G --> G3_H["Link Telemedicine"]
+                G3_sub_three --> G3_I["Other transport service link MRU]"]
+                G3_F --> G3_J["Judicious NOM"]
+                G3_F --> G3_K["Consider operation Link 16 Surgical principles"]
+                G3_F --> G3_L["Consider angeography [angioembolisation Link 17]"]
+        
+                click G3_A callback
+        
+            </pre>
 
 
 
@@ -890,7 +833,7 @@
 
     <footer class="bg-light text-center text-lg-start mt-5">
         <div class="text-center p-3">
-            © 2025 - Paediatric Spleen Injury Guidelines
+            © 2025 - Paediatric Spleen Injury guide (Last updated: 2025-04-07)
         </div>
     </footer>
 
@@ -899,6 +842,21 @@
     <script src="script.js"></script>
     <script type="module" src="modelContentResusitation_v2.js"></script>
     <script type="module" src="modelCTScan.js"></script>
+
+    <script>
+        window.callback = function (id) {
+            console.log('Callback function called ' + id);
+        };
+        const config = {
+            startOnLoad: true,
+            flowchart: { useMaxWidth: true, htmlLabels: true, curve: 'basis' },
+            securityLevel: 'loose',
+        };
+        mermaid.initialize(config);
+
+        //curveStep looks nice
+
+    </script>
 
 </body>
 
