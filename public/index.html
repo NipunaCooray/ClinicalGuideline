@@ -98,6 +98,8 @@
             splenic injury </h3>
         <div class="alert alert-danger">
             <strong>⚠️ Don’t delay, call for help early!</strong>
+
+            <button id="openModalBtn" class="btn btn-primary">Open Modal</button>
         </div>
 
         <p>Initial assessment of a seriously injured child follows the same structured approach as that of adult
@@ -166,23 +168,29 @@
 
             <pre class="mermaid">
                 flowchart LR
-        
+
                 IA_A["Abdominal injury with suspected Spleen injury Age 0-16"] --> IA_sub_one
-        
+
                 subgraph IA_sub_one["Local trauma response"]
                     direction TB
-                    IA_s_1_1["Mobilise local trauma"] --> IA_s_1_2["Primary survery"]
+                    IA_s_1_1["Mobilise local trauma teams/response and resources (e.g. radiology)"] --> IA_s_1_2["Primary survery link 1a"]
+                    IA_s_1_2 --> IA_s_1_3["Primary survery link 1b"]
+                    IA_s_1_3 --> IA_s_1_4["Link 1c"]
+                    IA_s_1_4 --> IA_s_1_5["Resusitation link 1a"]
+                    IA_s_1_5 --> IA_s_1_6["Resusitation link 1b"]
+                    IA_s_1_6 --> IA_s_1_7["Resusitation link 1d"]
+                    IA_s_1_7 --> IA_s_1_8["Abdo scan +/- FAST"]
                 end
-        
+
                 IA_sub_one --> IA_C["Address immediately life-threatening issues as found
                 Consider implications of associated life-threatening injuries.
                 "]
-        
+
                 subgraph IA_sub_two["Secondary survey"]
                     direction TB
                     IA_s_2_1["Secondary survery"] --> IA_s_2_2["Consider implications of associated injuries Analgesia "]
                 end
-        
+
                 IA_sub_one --> IA_sub_two
                 IA_C --> IA_sub_two
                 IA_C --> IA_D["Consider transfer"]
@@ -197,12 +205,16 @@
                 IA_E --> IA_J["NETS"]
                 IA_E --> IA_K["Telemedicine"]
                 IA_E --> IA_L["NSW Medical retrieval unit (MRU)"]
-                IA_I --> IA_J
-                IA_J --> IA_I
-        
-                linkStyle 0,2,4,5,10,13,18,19 stroke:#0000FF,stroke-width:2px;
-                linkStyle 6,7,8,9,11,12,14,15,16,17 stroke:#FF0000,stroke-width:2px;
-        
+                IA_I <--> IA_J
+                IA_J <--> IA_K
+                IA_K <--> IA_L
+                IA_I <--> IA_L
+                IA_J <--> IA_L
+                
+
+                linkStyle 0,8,10,11,16,19,24,25,26,27,28 stroke:#0000FF,stroke-width:2px;
+                linkStyle 12,13,14,15,17,18,20,21,22,23 stroke:#FF0000,stroke-width:2px;
+
                 click IA_A callback "Initial assessment A"
         
             </pre>
@@ -392,7 +404,7 @@
             </br>
             </br>
 
-            <!--Flowchart 2 - No signs of hemodynamic compromise G1-->
+            <!--Flowchart 2 - No signs of hemodynamic compromise G1 (pathway 1)-->
 
             <pre class="mermaid">
 
@@ -402,22 +414,27 @@
                 G1_B --> G1_C["Consider CT scan [Link CT scan]"]
                 G1_C --> G1_D["Injury found that required operation or other intervention"]
                 G1_D --> G1_E["Discussion re place of care based on grade, local resources and personnel [Link 14-place of care]"]
-                G1_D --> G1_F["Intervention locally"]
                 G1_C --> G1_G["No injuries requiring intervention"]
                 G1_G --> G1_H["Admit to ward [Link 12 ward management]"]
                 G1_H --> G1_I["Sign of haemodynamic compromise or Hb70 "]
-                G1_G --> G1_J["Discharge[Link 13a Discharge criteria, Link 13c Post discharge sheet]"]
+                G1_H --> G1_sub_one
+                subgraph G1_sub_one["Discharge"]
+                    direction TB
+                    G1_s_1_1["Discharge criteria"] --> G1_s_1_2["Post discharge information sheet "]
+                end        
                 G1_C --> G1_I
-                G1_I --> G1_K["Suspected ongoing bleeding pathway"]
-                G1_E --> G1_L["Link patch"]
-                G1_E --> G1_M["Link NETS"]
-                G1_E --> G1_N["Link Telemedicine"]
-                G1_E --> G1_O["Link NSW Medical retrieval unit (MRU)"]
-        
-                linkStyle 0,1,5,6,8 stroke:#0000FF,stroke-width:2px;
-                linkStyle 2,3,4,7,9,10,11,12,13,14 stroke:#FF0000,stroke-width:2px;
-        
-                click G1_A callback
+                G1_D --> G1_F["Intervention locally"]
+                G1_I --> G1_J["Suspected ongoing bleeding pathway"]
+                G1_E --> G1_K["Link patch"]
+                G1_E --> G1_L["Link NETS"]
+                G1_E --> G1_M["Link Telemedicine"]
+                G1_E --> G1_N["Link NSW Medical retrieval unit (MRU)"]
+                G1_G --> G1_E
+
+                linkStyle 0,1,4,5,7 stroke:#0000FF,stroke-width:2px;
+                linkStyle 2,3,6,9,10,11,12,13,14,15 stroke:#FF0000,stroke-width:2px;
+
+                click G1_C callback "CT scan"
         
             </pre>
 
@@ -487,50 +504,60 @@
 
             <pre class="mermaid">
 
-            flowchart LR
-    
-            G2_A["Start here"] --> G2_B["SUSTAINED HEMODYNAMIC RESPONSE [Links 1a and 1b]"]
-            G2_B --> G2_C["CT scan [Link CT scan]"]
-    
-            subgraph G2_sub_one["ICU/PICU"]
+                flowchart LR
+
+                G2_A["Start here"] --> G2_sub_one
+                subgraph G2_sub_one["Sustained haemo response"]
+                    direction TB
+                    G2_s_1_1["Link 1a"] --> G2_s_1_2["Link 1b "]
+                end  
+
+                G2_sub_one --> G2_B["CT scan [Link CT scan]"]
+
+                subgraph G2_sub_two["ICU/PICU"]
+                    direction TB
+                    G2_s_2_1["Monitoring, hourly BTF obs, consider invasive BP monitoring"] --> G2_s_2_2["Consider other sources of blood
+                    loss"]
+                    G2_s_2_2 --> G2_s_2_3["Continue to follow paediatric resuscitation principles [Links 1a and 1b]"]
+                    G2_s_2_3 --> G2_s_2_4["Hb Q6h until stable"]
+                    G2_s_2_4 --> G2_s_2_5["Bed rest and NBM, analgesia"]
+                    G2_s_2_5 --> G2_s_2_6["Consider mechanical VTE prophylaxis if post pubertal"]
+                end
+
+                G2_B --> G2_sub_two
+                G2_B --> G2_C["Injury found that required operation or other intervention"]
+                G2_C --> G2_D["Intervention locally"]
+                G2_D --> G2_sub_two
+
+                subgraph G2_sub_three["Discussion of management"]
                 direction TB
-                G2_s_1_1["Monitoring, hourly BTF obs, consider invasive BP monitoring"] --> G2_s_1_2["Consider other sources of blood
-                loss"]
-                G2_s_1_2 --> G2_s_1_3["Continue to follow paediatric resuscitation principles [Links 1a and 1b]"]
-                G2_s_1_3 --> G2_s_1_4["Hb Q6h until stable"]
-                G2_s_1_4 --> G2_s_1_5["Bed rest and NBM, analgesia"]
-                G2_s_1_5 --> G2_s_1_6["Consider mechanical VTE prophylaxis if post pubertal"]
-            end
+                    G2_s_3_1["Discussion of management and place of care based on local resources and personnel [Link 14]"] -->
+                    G2_s_3_2["Interfacility transfer"]
+                end
+
+                G2_D --> G2_sub_three
+                G2_sub_two --> G2_E["Suspected ongoing bleeding [Link 4]"]
+                G2_E --> G2_sub_three
+                G2_sub_three --> G2_F["NETS [Link 4]"]
+                G2_sub_three --> G2_G["NSW MRU [link 5]"]
+                G2_F --> G2_H["Telemedicine"]
+                G2_sub_two --> G2_I["Hv stable x2 and >7*, vital signs normal"]
+                G2_I --> G2_J["Admit to ward [Link 12]"]
+                G2_J --> G2_K["****Recurrent haemodynamic compromise or Hb more than 70"]
+                G2_J --> G2_sub_four
+                subgraph G2_sub_four["Discharge"]
+                direction TB
+                    G2_s_4_1["Discharge sheet"] -->
+                    G2_s_4_2["Post discharge information sheet"]
+                end
+                G2_K --> G2_sub_two
+
+                linkStyle 0,2,8,10,11,19,20,22,18 stroke:#0000FF,stroke-width:2px;
+                linkStyle 9,13,14,15,16,17,21,24 stroke:#FF0000,stroke-width:2px;
+
+                click G2_s_1_1 callback "Link 1a"
     
-            G2_C --> G2_sub_one
-            G2_C --> G2_D["Injury found that required operation or other intervention"]
-            G2_D --> G2_E["Intervention locally"]
-            G2_E --> G2_sub_one
-    
-            subgraph G2_sub_two["Discussion of management"]
-            direction TB
-                G2_s_2_1["Discussion of management and place of care based on local resources and personnel [Link 14]"] -->
-                G2_s_2_2["Interfacility transfer"]
-            end
-    
-            G2_E --> G2_sub_two
-            G2_sub_one --> G2_F["Suspected ongoing bleeding [Link 4]"]
-            G2_F --> G2_sub_two
-            G2_sub_two --> G2_G["NETS [Link 4]"]
-            G2_sub_two --> G2_H["NSW MRU [link 5]"]
-            G2_G --> G2_I["Telemedicine"]
-            G2_sub_one --> G2_J["Hv stable x2 and >7*, vital signs normal"]
-            G2_J --> G2_K["Admit to ward [Link 12]"]
-            G2_K --> G2_L["****Recurrent haemodynamic compromise or Hb more than 70"]
-            G2_K --> G2_M["Discharge [Link 13a, 13c]"]
-            G2_L --> G2_sub_one
-    
-            linkStyle 1 stroke:#0000FF,stroke-width:2px;
-            linkStyle 0,2 stroke:#FF0000,stroke-width:2px;
-    
-            click G2_A callback 
-    
-        </pre>
+            </pre>
 
 
         </div>
@@ -571,15 +598,15 @@
             <pre class="mermaid">
 
                 flowchart LR
-        
+
+                G3_A["Start here"] --> G3_sub_one
                 subgraph G3_sub_one["Resuscitation"]
                     direction TB
                     G3_s_1_1["Resusitation link 1a"] --> G3_s_1_2["Resusitation link 1b"]
                     G3_s_1_2 --> G3_s_1_3["Analgesia"]
                 end
-        
-                G3_A["Start here"] --> G3_sub_one
-                G3_sub_one --> G3_B[CT Scan if safe to do so]
+                G3_sub_one --> G3_B["CT Scan if safe to do so (contrast enhanced)"]
+                G3_sub_one --> G3_sub_two
                 subgraph G3_sub_two["ICU/PICU"]
                     direction TB
                     G3_s_2_1["ICU/PICU"] --> G3_s_2_2["Monitoring, hourly BTF obs"]
@@ -592,21 +619,18 @@
                     G3_s_2_8 --> G3_s_2_9["Bed rest and NBM, analgesia"]
                     G3_s_2_9 --> G3_s_2_10["Consider mechanical VTE prophylaxis if post pubertal"]
                 end
-        
-                G3_B --> G3_sub_two
                 G3_sub_two --> G3_C["Hb stable x2 <br> Sital signs normal"]
                 G3_C --> G3_D["Sustained response to resuscitation link 3"]
                 G3_sub_two --> G3_E["Persistent or recurrent haemodynamic compromise OR <br> Lack of sustained Hb response to PRBCs
                 over 12-48 hours <br> (up to 40mls/kg PRBCs) +/- MTP"]
                 G3_E --> G3_F["Failure of NOM Algorithm"]
+                G3_F --> G3_sub_three
                 subgraph G3_sub_three["Discussion re management"]
                     direction TB
                     G3_s_3_1["Discussion re management and place of care based on local resources and personnel"] --> G3_s_3_2["Link 14
                     place of care"]
                     G3_s_3_2 --> G3_s_3_3["Link 15 interfacility transfer"]
                 end
-        
-                G3_F --> G3_sub_three
                 G3_sub_one --> G3_sub_three
                 G3_sub_three --> G3_G["NETS [Link 4]"]
                 G3_G --> G3_H["Link Telemedicine"]
@@ -614,8 +638,12 @@
                 G3_F --> G3_J["Judicious NOM"]
                 G3_F --> G3_K["Consider operation Link 16 Surgical principles"]
                 G3_F --> G3_L["Consider angeography [angioembolisation Link 17]"]
-        
-                click G3_A callback
+
+                linkStyle 3,14,15 stroke:#0000FF,stroke-width:2px;
+                linkStyle 0,4,16,17,18,21,22,23,24,25,26,27 stroke:#FF0000,stroke-width:2px;
+
+                click G3_s_1_1 callback "Resusitation link 1a"
+                
         
             </pre>
 
@@ -624,9 +652,6 @@
         </div>
 
     </div>
-
-
-
 
     <!-- Modal Structure - CT Scan-->
 
@@ -837,6 +862,8 @@
         </div>
     </footer>
 
+    <!-- jQuery (needed for our custom trigger) -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
@@ -846,6 +873,10 @@
     <script>
         window.callback = function (id) {
             console.log('Callback function called ' + id);
+
+            var myModal = new bootstrap.Modal(document.getElementById('myModel1HemodynamicComp'));
+            myModal.show();
+
         };
         const config = {
             startOnLoad: true,
@@ -856,6 +887,15 @@
 
         //curveStep looks nice
 
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#openModalBtn').click(function () {
+                var myModal = new bootstrap.Modal(document.getElementById('myModel1HemodynamicComp'));
+                myModal.show();
+            });
+        });
     </script>
 
 </body>
