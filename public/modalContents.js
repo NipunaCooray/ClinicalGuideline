@@ -180,7 +180,7 @@ export const placeOfCareBody = `
 
     <p>The following is a guide:</p>
 
-    <h3>Grade 1-3, no haemodynamic compromise</h3>
+    <h5>Grade 1-3, no haemodynamic compromise</h5>
     <p>Hospital capacity to admit and care for some injured children down to the child’s age:</p>
     <ul>
         <li>Paediatric nursing and allied health capability and capacity</li>
@@ -192,7 +192,7 @@ export const placeOfCareBody = `
         <li>Personnel and resources to manage associated injuries</li>
     </ul>
 
-    <h3>Grade 4-5, no haemodynamic compromise</h3>
+    <h5>Grade 4-5, no haemodynamic compromise</h5>
     <p>Hospital capacity to admit and care for seriously injured children down to the child’s age:</p>
     <ul>
         <li>Paediatric nursing and allied health capacity</li>
@@ -205,7 +205,7 @@ export const placeOfCareBody = `
         <li>Personnel and resources to manage associated injuries</li>
     </ul>
 
-    <h3>Haemodynamic compromise (sustained, transient, or no response to resuscitation) – any grade</h3>
+    <h5>Haemodynamic compromise (sustained, transient, or no response to resuscitation) – any grade</h5>
     <p>Hospital capacity to admit and care for seriously injured children:</p>
     <ul>
         <li>Access to blood products</li>
@@ -226,7 +226,7 @@ export const placeOfCareBody = `
 export const interfacilityTransferBody = `
     <p> <b> N.B Traumatic cardiac arrest may prompt hospital pass </b></p>
     <p>Away from paediatric trauma centres, local decisions about staying vs transfer are supported through tele and video conferencing with paediatric trauma clinicians via NETS or PATCH (SCHN) (or others?).</p>
-    <p>Transfer is required if local personnel and resources for admission and/or definitive management are not available. <a href="link_13">[link 13]</a></p>
+    <p>Transfer is required if local personnel and resources for admission and/or definitive management are not available. <a class="modal-link" id="nextPageDischargeInstructions">[link 13 -Discharge instructions]</a></p>
     <p>Transfer is possible if the child can be stabilised, immediately life-threatening problems can be managed, and measures to prevent deterioration en-route can be started.</p>
     <p>Decisions about transfer are made based on:</p>
     <ul>

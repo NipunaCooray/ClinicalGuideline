@@ -300,7 +300,8 @@
                     <p>The need for circulatory resuscitation is based on </p>
 
                     <ul>
-                        <li>Signs haemodynamic compromise (with or without crystalloid bolus) [link1a] </li>
+                        <li>Signs haemodynamic compromise (with or without crystalloid bolus) Check "Assessing
+                            Haemodynamic Compromise" (Link 1a) </li>
                         <li> Hb&lt70g/L </li>
                         <li>Evidence of ongoing bleeding</li>
                     </ul>
@@ -318,7 +319,8 @@
                         <li><b>Establish IV access</b>– two, as large a possible (take trauma bloods at insertion)</li>
                         <li><b>Stabilise fractures</b>/apply pelvic binder</li>
                         <li><b>Instigate early activation of MTP</b> according to local criteria. link: SCHN MTP or
-                            relevant <a class="modal-link" id="nextPageLink">Local MTP</a>
+                            relevant <a href="https://www.health.nsw.gov.au/child-family-health-services"
+                                target="_blank">Local MTP</a>
                         </li>
                         <li>If haemodynamic compromise is present, volume is required. <b>Avoid crystalloid if possible
                                 and
@@ -433,6 +435,8 @@
                 linkStyle 2,3,6,9,10,11,12,13,14,15 stroke:#FF0000,stroke-width:2px;
 
                 click G1_C callback "CT scan"
+                click G1_H callback "Ward management"
+                click G1_E callback "Place of care"
         
             </pre>
 
@@ -553,7 +557,11 @@
                 linkStyle 0,2,8,10,11,19,20,22,18 stroke:#0000FF,stroke-width:2px;
                 linkStyle 9,13,14,15,16,17,21,24 stroke:#FF0000,stroke-width:2px;
 
-                click G2_s_1_1 callback "Link 1a"
+                click G2_s_1_1 callback "Link 1a-Hemodynamic compromise"
+                click G2_s_1_2 callback "Link 1b-Resuscitation principles"
+                click G2_B callback "CT scan"
+                click G2_s_3_1 callback "Link 14-Place of care"
+                click G2_J callback "Link 12-Ward management"
     
             </pre>
 
@@ -641,7 +649,13 @@
                 linkStyle 0,4,16,17,18,21,22,23,24,25,26,27 stroke:#FF0000,stroke-width:2px;
 
                 click G3_s_1_1 callback "Resusitation link 1a"
-                
+                click G3_s_1_2 callback "Resusitation link 1b"
+                click G3_s_2_6 callback "Resusitation link 1a"
+                click G3_s_2_7 callback "Resusitation link 1b"
+                click G3_s_3_2 callback "Link 14-Place of care"
+                click G3_s_3_3 callback "Link 15-Interfacility transfer"
+                click G3_K callback "Link 16-Surgical principles"
+                click G3_L callback "Link 17-Angioembolisation principles"
         
             </pre>
 
@@ -854,9 +868,80 @@
         </div>
     </div>
 
+    <!-- Modal Structure - Ward Management -->
+
+    <div class="modal fade" id="myModelWardManagement" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <!-- Back Button with Arrow -->
+                    <button id="backBtnWardManagement" class="d-none backBtn" aria-label="Back">&larr;</button>
+                    <h5 class="modal-title mx-auto" id="modalTitleWardManagement"> Ward Management</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="modal-body" id="modalBodyWardManagement">
+
+                    <script type="module">
+                        // Import the named export containing HTML
+                        import { wardManagementBody } from './modalContents.js';
+
+                        // Select the target div and insert the HTML content
+                        document.getElementById('modalBodyWardManagement').innerHTML = wardManagementBody;
+                    </script>
+
+
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Structure - Interfacility transfer -->
+
+    <div class="modal fade" id="myModelInterfacilityTransfer" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <!-- Back Button with Arrow -->
+                    <button id="backBtnInterfacilityTransfer" class="d-none backBtn" aria-label="Back">&larr;</button>
+                    <h5 class="modal-title mx-auto" id="modalTitleInterfacilityTransfer"> Interfacility Transfer
+                        Principles</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="modal-body" id="modalBodyInterfacilityTransfer">
+
+                    <script type="module">
+                        // Import the named export containing HTML
+                        import { interfacilityTransferBody } from './modalContents.js';
+
+                        // Select the target div and insert the HTML content
+                        document.getElementById('modalBodyInterfacilityTransfer').innerHTML = interfacilityTransferBody;
+                    </script>
+                </div>
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <footer class="bg-light text-center text-lg-start mt-5">
         <div class="text-center p-3">
-            © 2025 - Paediatric Spleen Injury guide (Last updated: 2025-04-07)
+            © 2025 - Paediatric Spleen Injury guide (Last updated: 2025-06-05)
         </div>
     </footer>
 
@@ -873,8 +958,76 @@
             console.log('Callback function called ' + id);
 
             switch (id) {
+                //Initial assessment node clicks
                 case "IA_s_1_2":
                     var myModal = new bootstrap.Modal(document.getElementById('myModel1HemodynamicComp'));
+                    myModal.show();
+                    break;
+                //Group 1 Node Clicks
+                case "G1_C":
+                    var myModal = new bootstrap.Modal(document.getElementById('myModelCTScan'));
+                    myModal.show();
+                    break;
+                case "G1_E":
+                    var myModal = new bootstrap.Modal(document.getElementById('myModelPlaceOfCare'));
+                    myModal.show();
+                    break;
+                case "G1_H":
+                    var myModal = new bootstrap.Modal(document.getElementById('myModelWardManagement'));
+                    myModal.show();
+                    break;
+                //Group 2 Node Clicks
+                case "G2_s_1_1":
+                    var myModal = new bootstrap.Modal(document.getElementById('myModel1HemodynamicComp'));
+                    myModal.show();
+                    break;
+                case "G2_s_1_2":
+                    var myModal = new bootstrap.Modal(document.getElementById('myModel1ResucitationPrinciples'));
+                    myModal.show();
+                    break;
+                case "G2_B":
+                    var myModal = new bootstrap.Modal(document.getElementById('myModelCTScan'));
+                    myModal.show();
+                    break;
+                case "G2_s_3_1":
+                    var myModal = new bootstrap.Modal(document.getElementById('myModelPlaceOfCare'));
+                    myModal.show();
+                    break;
+                case "G2_J":
+                    var myModal = new bootstrap.Modal(document.getElementById('myModelWardManagement'));
+                    myModal.show();
+                    break;
+                //Group 3 Node Clicks
+                case "G3_s_1_1":
+                    var myModal = new bootstrap.Modal(document.getElementById('myModel1HemodynamicComp'));
+                    myModal.show();
+                    break;
+                case "G3_s_1_2":
+                    var myModal = new bootstrap.Modal(document.getElementById('myModel1ResucitationPrinciples'));
+                    myModal.show();
+                    break;
+                case "G3_s_2_6":
+                    var myModal = new bootstrap.Modal(document.getElementById('myModel1HemodynamicComp'));
+                    myModal.show();
+                    break;
+                case "G3_s_2_7":
+                    var myModal = new bootstrap.Modal(document.getElementById('myModel1ResucitationPrinciples'));
+                    myModal.show();
+                    break;
+                case "G3_s_3_2":
+                    var myModal = new bootstrap.Modal(document.getElementById('myModelPlaceOfCare'));
+                    myModal.show();
+                    break;
+                case "G3_s_3_3":
+                    var myModal = new bootstrap.Modal(document.getElementById('myModelInterfacilityTransfer'));
+                    myModal.show();
+                    break;
+                case "G3_K":
+                    var myModal = new bootstrap.Modal(document.getElementById('myModelSurgicalPrinciples'));
+                    myModal.show();
+                    break;
+                case "G3_L":
+                    var myModal = new bootstrap.Modal(document.getElementById('myModelAngeoembolisationPrinciples'));
                     myModal.show();
                     break;
                 default:

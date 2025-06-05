@@ -1,5 +1,5 @@
 
-import { ctScanBody, angioembolisationBody, surgicalPrinciplesBody, placeOfCareBody, interfacilityTransferBody } from './modalContents.js';
+import { ctScanBody, angioembolisationBody, surgicalPrinciplesBody, placeOfCareBody, interfacilityTransferBody, dischargeInstructionsBody } from './modalContents.js';
 
 
 (function () {
@@ -86,6 +86,16 @@ import { ctScanBody, angioembolisationBody, surgicalPrinciplesBody, placeOfCareB
             });
         }
 
+        // Level 3 - Inside interfacility transfer
+        const level2Option1 = document.getElementById('nextPageDischargeInstructions');
+        if (level2Option1) {
+            level2Option1.addEventListener('click', () => {
+                updateModalContent(
+                    'Discharge Instructions',
+                    dischargeInstructionsBody
+                );
+            });
+        }
 
     }
 
