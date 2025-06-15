@@ -174,7 +174,7 @@
                     IA_s_1_1["Mobilise local trauma teams/response and resources (e.g. radiology)"] --- IA_s_1_2["Primary survery link 1c"]
                     IA_s_1_2 --- IA_s_1_3["Assessing haemodynamic compromise [Link 1a]"]
                     IA_s_1_3 --- IA_s_1_4["Resusitation principles [Link 1b]"]
-                    IA_s_1_4 --- IA_s_1_5["Abdo scan +/- FAST"]
+                    IA_s_1_4 --- IA_s_1_5["=/- FAST"]
                     IA_s_1_5 --- IA_s_1_6["Analgesia"]
                 end
 
@@ -411,7 +411,7 @@
                 G1_D --> G1_E["Discussion re place of care based on grade, local resources and personnel [Link 14-place of care]"]
                 G1_C --> G1_G["No injuries requiring intervention"]
                 G1_G --> G1_H["Admit to ward [Link 12 ward management]"]
-                G1_H --> G1_I["Sign of haemodynamic compromise or Hb70 "]
+                G1_H --> G1_I["Sign of haemodynamic compromise or Hb<70 "]
                 G1_H --> G1_sub_one
                 subgraph G1_sub_one["Discharge"]
                     direction TB
@@ -531,7 +531,7 @@
                 G2_E --> G2_G["Transfer services"]
                 G2_sub_two --> G2_H["Hv stable x2 and >7*, vital signs normal"]
                 G2_H --> G2_I["Admit to ward [Link 12]"]
-                G2_I --> G2_J["Recurrent haemodynamic compromise or Hb more than 70"]
+                G2_I --> G2_J["Recurrent haemodynamic compromise or Hb<70"]
                 G2_I --> G2_sub_four
                 subgraph G2_sub_four["Discharge"]
                 direction TB
@@ -615,7 +615,7 @@
                     G3_s_2_9 --> G3_s_2_10["Consider mechanical VTE prophylaxis if post pubertal"]
                 end
                 G3_sub_two --> G3_C["Hb stable x2 <br> Sital signs normal"]
-                G3_C --> G3_D["Sustained response to resuscitation link 3"]
+                G3_C --> G3_D["Sustained response to resuscitation pathway"]
                 G3_sub_two --> G3_E["Persistent or recurrent haemodynamic compromise OR <br> Lack of sustained Hb response to PRBCs
                 over 12-48 hours <br> (up to 40mls/kg PRBCs) +/- MTP"]
                 G3_E --> G3_F["Failure of NOM Algorithm"]
